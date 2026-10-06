@@ -34,7 +34,6 @@ export function WhatsAppButton() {
       )}
       <button
         onClick={() => setOpen((v) => !v)}
-        aria label="Falar com a Top Fit no WhatsApp"
         aria-label="Falar com a Top Fit no WhatsApp"
         className="ml-auto grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-background shadow-xl transition-transform hover:scale-105"
       >
