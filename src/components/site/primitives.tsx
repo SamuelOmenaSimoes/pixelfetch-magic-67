@@ -36,8 +36,8 @@ export function Reveal({ children, className, delay = 0 }: { children: ReactNode
     if (!el) return;
     const io = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting) {
-          el.dataset.shown = "true";
+        if (e?.isIntersecting) {
+          el.dataset["shown"] = "true";
           io.disconnect();
         }
       },
