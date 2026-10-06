@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { MessageCircle, X } from "lucide-react";
 import { useState } from "react";
 import { units, whatsappLink } from "@/data/topfit";
@@ -44,6 +44,8 @@ export function WhatsAppButton() {
 }
 
 export function MobileBar() {
+  const path = useRouterState({ select: (s) => s.location.pathname });
+  if (path.startsWith("/comece-agora")) return null;
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-2 border-t bg-background/95 p-2 backdrop-blur lg:hidden">
       <Link to="/" hash="academias" className={cta({ variant: "outline", size: "sm" }) + " h-11"}>
