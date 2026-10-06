@@ -123,7 +123,7 @@ function Signup() {
   );
 }
 
-function Row({ k, v }: { k: string; v?: string }) {
+function Row({ k, v }: { k: string; v?: string | undefined }) {
   return (
     <div className="flex justify-between gap-4 py-4">
       <dt className="text-muted-foreground">{k}</dt>
