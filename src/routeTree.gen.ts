@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ComeceAgoraRouteImport } from './routes/comece-agora'
+import { Route as UnidadesSlugRouteImport } from './routes/unidades.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComeceAgoraRoute = ComeceAgoraRouteImport.update({
+  id: '/comece-agora',
+  path: '/comece-agora',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UnidadesSlugRoute = UnidadesSlugRouteImport.update({
+  id: '/unidades/$slug',
+  path: '/unidades/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/comece-agora': typeof ComeceAgoraRoute
+  '/unidades/$slug': typeof UnidadesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/comece-agora': typeof ComeceAgoraRoute
+  '/unidades/$slug': typeof UnidadesSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/comece-agora': typeof ComeceAgoraRoute
+  '/unidades/$slug': typeof UnidadesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/comece-agora' | '/unidades/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/comece-agora' | '/unidades/$slug'
+  id: '__root__' | '/' | '/comece-agora' | '/unidades/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ComeceAgoraRoute: typeof ComeceAgoraRoute
+  UnidadesSlugRoute: typeof UnidadesSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/comece-agora': {
+      id: '/comece-agora'
+      path: '/comece-agora'
+      fullPath: '/comece-agora'
+      preLoaderRoute: typeof ComeceAgoraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/unidades/$slug': {
+      id: '/unidades/$slug'
+      path: '/unidades/$slug'
+      fullPath: '/unidades/$slug'
+      preLoaderRoute: typeof UnidadesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ComeceAgoraRoute: ComeceAgoraRoute,
+  UnidadesSlugRoute: UnidadesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
